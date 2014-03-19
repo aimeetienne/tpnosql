@@ -38,7 +38,8 @@ public class App {
 
 		Person p = new Person();
 		Person p1 = new Person();
-		Person p2 = new Person();
+		
+
 
 		p.setNom("Tintin");
 		p1.setNom("tit");
@@ -46,7 +47,8 @@ public class App {
 		//p1.setAr(art);
 		per.add(p1);
 		per.add(p);
-		per.add(p2);
+	
+
 
 		at.setPers(per);
 		at1.setPers(per);
@@ -70,14 +72,30 @@ public class App {
 		p1.setAd(a1);
 		// Save the POJO
 		ds.save(p);
-
+		ds.save(p1);
+		ds.save(per);
+		
+		
+		ds.save(address);
+		ds.save(address1);
+		ds.save(a1);
+		ds.save(a);
+		
+		
+		ds.save(at);
+		ds.save(at1);
+		ds.save(art);
+		
+		
 		for (Article article : ds.find(Article.class)){
 
-			System.out.println("les articles sont"+article.getPers());
+			 System.out.println("les articles sont"+article.getPers());
+			 
 			for (Person personne : ds.find(Person.class))
 
 			{
 				for (Address addresseP : ds.find(Address.class)){
+					
 					System.out.println("L'article"+article+"Appartient a"+personne +"qui habite"+addresseP);
 				}
 			}
