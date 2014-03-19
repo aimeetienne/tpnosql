@@ -16,11 +16,13 @@ public class App {
 	public static void main(String[] args) throws UnknownHostException {
 		ArrayList<Address> a = new ArrayList<Address>();
 		ArrayList<Address> a1 = new ArrayList<Address>();
-		
+
+		ArrayList<Person> per= new ArrayList<Person>();
+
 		ArrayList<Article> art = new ArrayList<Article>();
 		Article at = new Article();
 		Article at1 = new Article();
-	 
+
 		at.setName("tele");
 		at.setStars(1);
 		at1.setName("radio");
@@ -33,16 +35,22 @@ public class App {
 		Mongo mongo = new Mongo();
 		morphia.map(Person.class).map(Address.class);
 		Datastore ds = morphia.createDatastore(mongo, "my_database");
-		
+
 		Person p = new Person();
 		Person p1 = new Person();
 		Person p2 = new Person();
-	
+
 		p.setNom("Tintin");
 		p1.setNom("tit");
-		p.setAr(art);
-		p1.setAr(art);
+		//p.setAr(art);
+		//p1.setAr(art);
+		per.add(p1);
+		per.add(p);
+		per.add(p2);
 
+		at.setPers(per);
+		at1.setPers(per);
+		
 		Address address = new Address();
 		Address address1 = new Address();
 		address.setStreet("123 Some street");
@@ -62,19 +70,20 @@ public class App {
 		p1.setAd(a1);
 		// Save the POJO
 		ds.save(p);
-		
-		for (Article article : ds.find(Article.class)){
-		
-		for (Person personne : ds.find(Person.class))
-			
-		{
-			for (Address addresseP : ds.find(Address.class)){
-				System.err.println("L'article"+article.getName()+"Appartient a"+personne.getNom()+"qui habite"+addresseP.getCity());
-			}
-		}
-		
 
-		
+		for (Article article : ds.find(Article.class)){
+
+			System.out.println("les articles sont"+article.getPers());
+			for (Person personne : ds.find(Person.class))
+
+			{
+				for (Address addresseP : ds.find(Address.class)){
+					System.out.println("L'article"+article+"Appartient a"+personne +"qui habite"+addresseP);
+				}
+			}
+
+
+
 		}
 		// Affichage des personne
 

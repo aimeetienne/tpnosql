@@ -16,6 +16,11 @@ public class Address {
 	//private Person p;
 	
 	
+	@Override
+	public String toString() {
+		return "Address [street=" + street + ", city=" + city + ", postCode="
+				+ postCode + ", country=" + country + ", id=" + id + "]";
+	}
 	public String getStreet() {
 		return street;
 	}

@@ -1,6 +1,7 @@
 package fr.istic.miage.tpnosql.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bson.types.ObjectId;
 
@@ -13,15 +14,17 @@ import com.google.code.morphia.annotations.Reference;
 
 @Entity("Personne")
 public class Person {
-	  @Id ObjectId id; 
+	  @Override
+	public String toString() {
+		return "Person [id=" + id + ", nom=" + nom + ", prenom=" + prenom
+				+ ", ad=" + ad + ", ar=" +   "]";
+	}
+	@Id ObjectId id; 
 	 
 	private String nom;
 	private String prenom;
 	@Embedded
-	
-	private ArrayList<Address> ad= new ArrayList<Address>();
-	@Embedded
-	private ArrayList<Article> ar=new ArrayList<Article>();
+	private List<Address> ad= new ArrayList<Address>();
 	
 	public String getNom() {
 		return nom;
@@ -35,18 +38,13 @@ public class Person {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	public ArrayList<Address> getAd() {
+	public  List<Address> getAd() {
 		return ad;
 	}
 	public void setAd(ArrayList<Address> ad) {
 		this.ad = ad;
 	}
-	public ArrayList<Article> getAr() {
-		return ar;
-	}
-	public void setAr(ArrayList<Article> ar) {
-		this.ar = ar;
-	}
+	 
 	
 
 }
